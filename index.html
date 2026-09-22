@@ -11,34 +11,9 @@
   </head>
   <body>
     <svg class="svg-sprite" aria-hidden="true">
-      <symbol id="icon-doc" viewBox="0 0 24 24">
-        <path d="M7 3h7l4 4v14H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/>
-        <path d="M14 3v5h5M9 13h6M9 17h6"/>
-      </symbol>
-      <symbol id="icon-swap" viewBox="0 0 24 24">
-        <path d="M5 8a7 7 0 0 1 11.8-2.9L19 7"/>
-        <path d="M19 3v4h-4M19 16a7 7 0 0 1-11.8 2.9L5 17"/>
-        <path d="M5 21v-4h4"/>
-      </symbol>
-      <symbol id="icon-bike" viewBox="0 0 24 24">
-        <circle cx="6" cy="17" r="3"/>
-        <circle cx="18" cy="17" r="3"/>
-        <path d="M7.5 17 10 11h4l2 6M9 13h7l-2-5h2.5M10 11 8 8H6"/>
-      </symbol>
-      <symbol id="icon-calculator" viewBox="0 0 24 24">
-        <rect x="5" y="3" width="14" height="18" rx="2"/>
-        <path d="M8 7h8M8 11h2M14 11h2M8 15h2M14 15h2M8 19h2M14 19h2"/>
-      </symbol>
-      <symbol id="icon-heart" viewBox="0 0 24 24">
-        <path d="M20.8 5.9a5.2 5.2 0 0 0-7.4 0L12 7.3l-1.4-1.4a5.2 5.2 0 1 0-7.4 7.4L12 22l8.8-8.7a5.2 5.2 0 0 0 0-7.4Z"/>
-      </symbol>
-      <symbol id="icon-compass" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="9"/>
-        <path d="m15.5 8.5-2.1 4.9-4.9 2.1 2.1-4.9 4.9-2.1Z"/>
-      </symbol>
       <symbol id="icon-spark" viewBox="0 0 24 24">
-        <path d="M5 17 11 11"/>
-        <path d="M11 19 18 12"/>
+        <path d="M5 17 11 11" />
+        <path d="M11 19 18 12" />
       </symbol>
     </svg>
 
@@ -49,7 +24,7 @@
 
       <section class="choices" aria-label="Plate options">
         <button type="button" class="option coral" data-option="give_up">
-          <span class="option-character pangolin" role="img" aria-label="Pangolin illustration"><img src="assets/hero.png" alt="" /></span>
+          <span class="option-character pangolin" role="img" aria-label="Pangolin illustration"><img src="assets/character-pangolin.png" alt="" /></span>
           <span class="option-copy">
             <strong>Give Up</strong>
             <b>RM 315</b>
@@ -59,7 +34,7 @@
         </button>
 
         <button type="button" class="option yellow" data-option="interchange">
-          <span class="option-character cat" role="img" aria-label="Lucky cat illustration"><img src="assets/hero.png" alt="" /></span>
+          <span class="option-character cat" role="img" aria-label="Lucky cat illustration"><img src="assets/character-lucky-cat.png" alt="" /></span>
           <span class="option-copy">
             <strong>Interchange</strong>
             <b>RM1.6k</b>
@@ -69,7 +44,7 @@
         </button>
 
         <button type="button" class="option blue" data-option="buy_motorcycle">
-          <span class="option-character bear" role="img" aria-label="Bear illustration"><img src="assets/hero.png" alt="" /></span>
+          <span class="option-character bear" role="img" aria-label="Bear illustration"><img src="assets/character-bear.png" alt="" /></span>
           <span class="option-copy">
             <strong>Buy Motorcycle</strong>
             <b>RM3.7k</b>
@@ -80,8 +55,6 @@
       </section>
 
       <section class="persona-section">
-        <div class="side-note left-note">Same plate.<br />A happier you.</div>
-
         <div class="persona-heading">
           <p class="eyebrow">What fits you?</p>
           <h2>Choose the voice you trust most.</h2>
@@ -89,36 +62,34 @@
 
         <div class="personas" role="radiogroup" aria-label="Decision persona">
           <button type="button" class="persona selected" data-persona="I value financial sense over extras. I do not need a motorcycle and I am not attached to XX3218." aria-pressed="true">
-            <span class="avatar planner"><svg aria-hidden="true"><use href="#icon-calculator"></use></svg></span>
+            <span class="avatar planner"><img src="assets/character-pangolin.png" alt="" /></span>
             <span class="persona-copy"><b>Practical Planner</b><small>I value financial sense over extras.</small></span>
             <span class="persona-radio" aria-hidden="true"></span>
           </button>
 
           <button type="button" class="persona" data-persona="Some things are worth keeping. I feel personally attached to XX3218 and expect to have another vehicle." aria-pressed="false">
-            <span class="avatar keeper"><svg aria-hidden="true"><use href="#icon-heart"></use></svg></span>
+            <span class="avatar keeper"><img src="assets/character-lucky-cat.png" alt="" /></span>
             <span class="persona-copy"><b>Sentimental Keeper</b><small>Some things are worth keeping.</small></span>
             <span class="persona-radio" aria-hidden="true"></span>
           </button>
 
           <button type="button" class="persona" data-persona="Life is better on two wheels. I genuinely want a motorcycle and enjoy the idea of keeping XX3218." aria-pressed="false">
-            <span class="avatar freedom"><svg aria-hidden="true"><use href="#icon-bike"></use></svg></span>
+            <span class="avatar freedom"><img src="assets/character-bear.png" alt="" /></span>
             <span class="persona-copy"><b>Freedom Seeker</b><small>Life is better on two wheels.</small></span>
             <span class="persona-radio" aria-hidden="true"></span>
           </button>
 
           <button type="button" class="persona" data-persona="I am just exploring my options. I have no strong attachment to XX3218 or interest in a motorcycle." aria-pressed="false">
-            <span class="avatar curious"><svg aria-hidden="true"><use href="#icon-compass"></use></svg></span>
+            <span class="avatar curious"><img src="assets/character-raccoon.png" alt="" /></span>
             <span class="persona-copy"><b>Curious Explorer</b><small>I'm just exploring my options.</small></span>
             <span class="persona-radio" aria-hidden="true"></span>
           </button>
         </div>
-
-        <div class="side-note right-note">No wrong<br />choices.<br />Just a wiser you.</div>
       </section>
 
       <section class="take" aria-live="polite">
         <div class="advisor">
-          <span class="advisor-face"><svg aria-hidden="true"><use href="#icon-calculator"></use></svg></span>
+          <span class="advisor-face"><img src="assets/character-pangolin.png" alt="Pangolin advisor" /></span>
           <span class="speech">Our take:</span>
         </div>
 

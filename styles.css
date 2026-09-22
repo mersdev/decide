@@ -116,16 +116,13 @@ button { font: inherit; }
 }
 
 .option-character img {
-  position: absolute;
-  top: -38px;
-  left: -146px;
-  width: auto;
-  height: 180px;
-  max-width: none;
+  position: static;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center;
 }
-
-.option-character.cat img { top: -34px; left: -242px; }
-.option-character.bear img { top: -38px; left: -336px; }
 
 .avatar svg,
 .advisor-face svg {
@@ -190,7 +187,7 @@ button { font: inherit; }
 }
 
 .persona-section {
-  padding: 0 10.2% 22px;
+  padding: 0 5.1% 24px;
   position: relative;
 }
 
@@ -224,10 +221,10 @@ button { font: inherit; }
   border-radius: 24px;
   background: rgba(255,255,255,.88);
   display: grid;
-  grid-template-columns: 58px minmax(0,1fr) 22px;
+  grid-template-columns: 76px minmax(0,1fr) 22px;
   align-items: center;
-  gap: 13px;
-  padding: 13px 15px;
+  gap: 14px;
+  padding: 12px 15px;
   color: var(--ink);
   text-align: left;
   cursor: pointer;
@@ -248,19 +245,26 @@ button { font: inherit; }
 }
 
 .avatar {
-  width: 58px;
-  height: 58px;
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: #f2c28b;
-  color: #27384d;
-  box-shadow: inset 0 -3px 0 rgba(111,74,45,.1), 0 3px 0 rgba(20,35,58,.08);
+  overflow: hidden;
+  background: #f8d89c;
+  box-shadow: inset 0 -3px 0 rgba(111,74,45,.08), 0 4px 10px rgba(20,35,58,.08);
 }
 
-.keeper { background: #e7b287; }
-.freedom { background: #f2c27e; }
-.curious { background: #e9a174; }
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.keeper { background: #f4d4b2; }
+.freedom { background: #f8cf86; }
+.curious { background: #f2b48d; }
 
 .persona-copy { min-width: 0; }
 .persona b,
@@ -299,26 +303,6 @@ button { font: inherit; }
   background: #ff755f;
 }
 
-.side-note {
-  position: absolute;
-  z-index: 2;
-  padding: 16px 14px;
-  font-family: 'Patrick Hand', cursive;
-  font-size: 22px;
-  line-height: 1.03;
-  background: #ffc9c4;
-  transform: rotate(-7deg);
-  box-shadow: 2px 5px 12px rgba(96,75,61,.18);
-}
-
-.left-note { left: 1.6%; top: 31px; }
-
-.right-note {
-  right: 1.5%;
-  top: 14px;
-  background: #bfefb5;
-  transform: rotate(-6deg);
-}
 
 .take {
   margin: 0 1.9%;
@@ -353,6 +337,20 @@ button { font: inherit; }
 }
 
 .advisor-face svg { width: 52%; height: 52%; }
+
+.advisor-face {
+  overflow: hidden;
+  background: #ead5ab;
+}
+
+.advisor-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.advisor-face svg { display: none; }
 
 .speech {
   margin-left: -10px;
