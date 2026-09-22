@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Same Plate, Different Paths</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&family=Patrick+Hand&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="board">
+      <section class="hero" aria-label="Same Plate, Different Paths">
+        <img src="assets/hero.png" alt="Pangolin, lucky cat and bear considering the XX3218 plate" />
+      </section>
+
+      <section class="choices" aria-label="Plate options">
+        <button class="option coral" data-option="give_up">
+          <i class="option-icon fa-regular fa-file-lines" aria-hidden="true"></i><span><strong>Give Up</strong><b>RM 315</b><em>Let it go, pay the fee,<br />move on.</em></span><i class="accent fa-solid fa-pencil" aria-hidden="true"></i>
+        </button>
+        <button class="option yellow" data-option="interchange">
+          <i class="option-icon fa-solid fa-arrows-rotate" aria-hidden="true"></i><span><strong>Interchange</strong><b>RM1.6k</b><em>Keep XX3218,<br />swap it to another vehicle.</em></span><i class="accent fa-solid fa-pencil" aria-hidden="true"></i>
+        </button>
+        <button class="option blue" data-option="buy_motorcycle">
+          <i class="option-icon fa-solid fa-motorcycle" aria-hidden="true"></i><span><strong>Buy Motorcycle</strong><b>RM3.7k</b><em>Get a motorbike<br />just for this plate.</em></span><i class="accent fa-solid fa-pencil" aria-hidden="true"></i>
+        </button>
+      </section>
+
+      <section class="persona-section">
+        <div class="side-note left-note">Same plate.<br />A happier you.</div>
+        <div>
+          <p class="eyebrow">What fits you?</p>
+          <h2>Choose the voice you trust most.</h2>
+        </div>
+        <div class="personas" role="radiogroup" aria-label="Decision persona">
+          <button class="persona selected" data-persona="I value financial sense over extras. I do not need a motorcycle and I am not attached to XX3218." aria-pressed="true"><span class="avatar planner"><i class="fa-solid fa-calculator" aria-hidden="true"></i></span><span><b>Practical Planner</b><small>I value financial sense<br />over extras.</small></span><i></i></button>
+          <button class="persona" data-persona="Some things are worth keeping. I feel personally attached to XX3218 and expect to have another vehicle." aria-pressed="false"><span class="avatar keeper"><i class="fa-solid fa-heart" aria-hidden="true"></i></span><span><b>Sentimental Keeper</b><small>Some things are<br />worth keeping.</small></span><i></i></button>
+          <button class="persona" data-persona="Life is better on two wheels. I genuinely want a motorcycle and enjoy the idea of keeping XX3218." aria-pressed="false"><span class="avatar freedom"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i></span><span><b>Freedom Seeker</b><small>Life's better<br />on two wheels.</small></span><i></i></button>
+          <button class="persona" data-persona="I am just exploring my options. I have no strong attachment to XX3218 or interest in a motorcycle." aria-pressed="false"><span class="avatar curious"><i class="fa-solid fa-compass" aria-hidden="true"></i></span><span><b>Curious Explorer</b><small>Just exploring<br />my options.</small></span><i></i></button>
+        </div>
+        <div class="side-note right-note">No wrong<br />choices.<br />Just a wiser you.</div>
+      </section>
+
+      <section class="take" aria-live="polite">
+        <div class="advisor"><span class="advisor-face"><i class="fa-solid fa-calculator" aria-hidden="true"></i></span><span class="speech">Our take:</span></div>
+        <div class="take-copy">
+          <h3 id="take-title">Go with Give Up (RM315).</h3>
+          <p id="take-summary">Since you don’t need a motorbike and you don’t consider XX3218 a superb plate, there’s no strong reason to spend more. Pay the RM315, close this chapter, and put your money towards something that brings you more value.</p>
+        </div>
+        <ul id="reasons"><li>Lowest cost, lowest hassle</li><li>Frees up money for what matters to you</li><li>A practical choice for your situation</li></ul>
+        <div class="take-action"><button id="go-button">Go with Give Up<br />(RM315) <span>→</span></button><p>Less overthinking.<br />More of what you love.</p></div>
+      </section>
+      <p class="footer">GOOD PEOPLE MAKE BETTER DECISIONS <span>SAME PLATE, BRIGHTER DAYS.</span></p>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
