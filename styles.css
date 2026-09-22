@@ -103,15 +103,30 @@ button { font: inherit; }
   outline-offset: 3px;
 }
 
-.option-icon {
+.option-character {
+  position: relative;
+  overflow: hidden;
   width: 84px;
   height: 92px;
   display: grid;
   place-items: center;
-  color: #172231;
+  border-radius: 18px;
+  background: #f6efe2;
+  box-shadow: inset 0 0 0 1px rgba(20,35,58,.08);
 }
 
-.option-icon svg,
+.option-character img {
+  position: absolute;
+  top: -38px;
+  left: -146px;
+  width: auto;
+  height: 180px;
+  max-width: none;
+}
+
+.option-character.cat img { top: -34px; left: -242px; }
+.option-character.bear img { top: -38px; left: -336px; }
+
 .avatar svg,
 .advisor-face svg {
   width: 78%;
@@ -480,7 +495,7 @@ button { font: inherit; }
     padding: 20px;
   }
 
-  .option-icon {
+  .option-character {
     width: 62px;
     height: 62px;
     border-radius: 20px;
@@ -556,7 +571,7 @@ button { font: inherit; }
     padding: 17px;
   }
 
-  .option-icon {
+  .option-character {
     width: 54px;
     height: 54px;
     border-radius: 17px;
