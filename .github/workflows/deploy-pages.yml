@@ -35,7 +35,7 @@ jobs:
             exit 1
           fi
           encoded=$(printf '%s' "$OPENROUTER_API_KEY" | base64 -w 0)
-          printf "window.OPENROUTER_API_KEY = atob('%s');\n" "$encoded" > runtime-config.js
+          printf "window.OPENROUTER_API_KEY = atob('%s');\n" "$encoded" > plat-number/runtime-config.js
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -43,7 +43,7 @@ jobs:
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: plat-number
 
       - name: Deploy to GitHub Pages
         id: deployment
