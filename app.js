@@ -1,19 +1,46 @@
 const details = {
-  give_up: { title: 'Go with Give Up (RM315).', button: 'Go with Give Up<br />(RM315)', summary: 'This closes the chapter at the lowest cost. It fits a practical decision when the plate does not carry enough future value to justify spending more.', reasons: ['Lowest cost, lowest hassle', 'Frees up money for what matters to you', 'A practical choice for your situation'] },
-  interchange: { title: 'Go with Interchange (RM1.6k).', button: 'Interchange<br />(RM1.6k)', summary: 'Keeping XX3218 makes sense when it matters personally and you have a clear future vehicle for it. You retain the plate without buying a motorcycle only for it.', reasons: ['Keeps XX3218 in your life', 'Avoids buying a vehicle for the plate', 'Makes room for a future vehicle plan'] },
-  buy_motorcycle: { title: 'Go with Buy Motorcycle (RM3.7k).', button: 'Buy Motorcycle<br />(RM3.7k)', summary: 'This fits only when the motorcycle itself is part of your plan. You get two wheels and keep XX3218, rather than creating a purchase solely for the plate.', reasons: ['You genuinely want the motorcycle', 'Keeps the plate with a purpose', 'Turns the choice into a new experience'] }
+  give_up: { title: 'Go with Give Up (RM315).', button: 'Go with Give Up (RM315)', summary: 'This closes the chapter at the lowest cost. It fits a practical decision when the plate does not carry enough future value to justify spending more.', reasons: ['Lowest cost, lowest hassle', 'Frees up money for what matters to you', 'A practical choice for your situation'] },
+  interchange: { title: 'Go with Interchange (RM1.6k).', button: 'Interchange (RM1.6k)', summary: 'Keeping XX3218 makes sense when it matters personally and you have a clear future vehicle for it. You retain the plate without buying a motorcycle only for it.', reasons: ['Keeps XX3218 in your life', 'Avoids buying a vehicle for the plate', 'Makes room for a future vehicle plan'] },
+  buy_motorcycle: { title: 'Go with Buy Motorcycle (RM3.7k).', button: 'Buy Motorcycle (RM3.7k)', summary: 'This fits only when the motorcycle itself is part of your plan. You get two wheels and keep XX3218, rather than creating a purchase solely for the plate.', reasons: ['You genuinely want the motorcycle', 'Keeps the plate with a purpose', 'Turns the choice into a new experience'] }
 };
+
 const title = document.querySelector('#take-title');
 const summary = document.querySelector('#take-summary');
 const reasons = document.querySelector('#reasons');
 const action = document.querySelector('#go-button');
+const take = document.querySelector('.take');
+const optionButtons = [...document.querySelectorAll('.option')];
 let activePersona = document.querySelector('.persona').dataset.persona;
+
+function selectOption(option) {
+  optionButtons.forEach((button) => {
+    const selected = button.dataset.option === option;
+    button.classList.toggle('selected', selected);
+    button.setAttribute('aria-pressed', String(selected));
+  });
+  take.dataset.option = option;
+}
 
 function show(option, loading = false) {
   const item = details[option];
+
+  if (loading) {
+    take.classList.add('is-thinking');
+    optionButtons.forEach((button) => {
+      button.classList.remove('selected');
+      button.setAttribute('aria-pressed', 'false');
+    });
+  } else {
+    take.classList.remove('is-thinking');
+    selectOption(option);
+  }
+
   title.textContent = loading ? 'Thinking it through…' : item.title;
   summary.textContent = loading ? 'Your chosen persona is weighing the three options for XX3218.' : item.summary;
-  reasons.innerHTML = (loading ? ['Comparing cost with personal value', 'Matching the choice to your priorities', 'Getting a typed decision from Jev'] : item.reasons).map((reason) => `<li>${reason}</li>`).join('');
+  reasons.innerHTML = (loading
+    ? ['Comparing cost with personal value', 'Matching the choice to your priorities', 'Getting a typed decision from Jev']
+    : item.reasons
+  ).map((reason) => `<li>${reason}</li>`).join('');
   action.innerHTML = loading ? 'Deciding…' : item.button + ' <span>→</span>';
   action.disabled = loading;
 }
@@ -23,6 +50,7 @@ async function decide() {
   try {
     const key = await getOpenRouterKey();
     if (!key) throw new Error('No OPENROUTER_API_KEY was provided.');
+
     const response = await fetch('https://openrouter.ai/api/alpha/decisions', {
       method: 'POST',
       headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
@@ -55,14 +83,20 @@ async function decide() {
         }
       })
     });
+
     const raw = await response.text();
     let data;
     try { data = JSON.parse(raw); }
     catch { throw new Error(`The decision service returned an invalid response (${response.status}).`); }
+
     if (!response.ok) throw new Error(data.error || 'The decision request could not complete.');
-    if (!data.answers?.recommendation?.choice) throw new Error('The decision service returned no recommendation.');
-    show(data.answers.recommendation.choice);
+
+    const recommendation = data.answers?.recommendation?.choice;
+    if (!details[recommendation]) throw new Error('The decision service returned no valid recommendation.');
+
+    show(recommendation);
   } catch (error) {
+    take.classList.remove('is-thinking');
     title.textContent = 'Couldn’t reach the decision service.';
     summary.textContent = error.message + ' Add OPENROUTER_API_KEY to .env, window.OPENROUTER_API_KEY, or the browser prompt.';
     reasons.innerHTML = '<li>Your persona choice is still selected</li><li>Set OPENROUTER_API_KEY in .env, then try again</li>';
@@ -73,8 +107,10 @@ async function decide() {
 
 async function getOpenRouterKey() {
   if (window.OPENROUTER_API_KEY) return window.OPENROUTER_API_KEY;
+
   const saved = localStorage.getItem('OPENROUTER_API_KEY');
   if (saved) return saved;
+
   try {
     const env = await fetch('.env', { cache: 'no-store' });
     if (env.ok) {
@@ -82,14 +118,27 @@ async function getOpenRouterKey() {
       if (match?.[1]?.trim()) return match[1].trim().replace(/^['"]|['"]$/g, '');
     }
   } catch {}
+
   const entered = window.prompt('Enter your OpenRouter API key for this browser session:');
-  if (entered?.trim()) { localStorage.setItem('OPENROUTER_API_KEY', entered.trim()); return entered.trim(); }
+  if (entered?.trim()) {
+    localStorage.setItem('OPENROUTER_API_KEY', entered.trim());
+    return entered.trim();
+  }
   return '';
 }
 
 document.querySelectorAll('.persona').forEach((button) => button.addEventListener('click', () => {
-  document.querySelectorAll('.persona').forEach((item) => { item.classList.remove('selected'); item.setAttribute('aria-pressed', 'false'); });
-  button.classList.add('selected'); button.setAttribute('aria-pressed', 'true'); activePersona = button.dataset.persona; decide();
+  document.querySelectorAll('.persona').forEach((item) => {
+    item.classList.remove('selected');
+    item.setAttribute('aria-pressed', 'false');
+  });
+  button.classList.add('selected');
+  button.setAttribute('aria-pressed', 'true');
+  activePersona = button.dataset.persona;
+  decide();
 }));
-document.querySelectorAll('.option').forEach((button) => button.addEventListener('click', () => show(button.dataset.option)));
+
+optionButtons.forEach((button) => button.addEventListener('click', () => show(button.dataset.option)));
 action.addEventListener('click', decide);
+
+show('give_up');

@@ -18,8 +18,12 @@
     </svg>
 
     <main class="board">
-      <section class="hero" aria-label="Same Plate, Different Paths">
-        <img src="assets/hero.png" alt="Pangolin, lucky cat and bear considering the XX3218 plate" />
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-title">
+          <span class="hero-kicker">XX3218 · ONE PLATE, THREE PATHS</span>
+          <h1 id="hero-title">Same Plate. <strong>Different Paths.</strong></h1>
+          <p>Choose what matters most. We’ll help you think it through.</p>
+        </div>
       </section>
 
       <section class="choices" aria-label="Plate options">
@@ -87,26 +91,35 @@
         </div>
       </section>
 
-      <section class="take" aria-live="polite">
-        <div class="advisor">
-          <span class="advisor-face"><img src="assets/advisor-owl.png" alt="Owl advisor" /></span>
-          <span class="speech">Our take:</span>
+      <section class="take" aria-live="polite" data-option="give_up">
+        <div class="take-mascot">
+          <div class="take-mascot-card">
+            <span class="take-mascot-face">
+              <img src="assets/advisor-owl.png" alt="Owl advisor" />
+            </span>
+            <span class="take-mascot-label">Our take:</span>
+          </div>
         </div>
 
-        <div class="take-copy">
-          <h3 id="take-title">Go with Give Up (RM315).</h3>
-          <p id="take-summary">Since you don’t need a motorbike and you don’t consider XX3218 a superb plate, there’s no strong reason to spend more. Pay the RM315, close this chapter, and put your money towards something that brings you more value.</p>
+        <div class="take-main">
+          <div class="take-copy">
+            <span class="take-badge">★ AI RECOMMENDATION</span>
+            <h3 id="take-title">Go with Give Up (RM315).</h3>
+            <p id="take-summary">This closes the chapter at the lowest cost. It fits a practical decision when the plate does not carry enough future value to justify spending more.</p>
+          </div>
         </div>
 
-        <ul id="reasons">
-          <li>Lowest cost, lowest hassle</li>
-          <li>Frees up money for what matters to you</li>
-          <li>A practical choice for your situation</li>
-        </ul>
+        <div class="take-side">
+          <ul id="reasons" class="take-reasons">
+            <li>Lowest cost, lowest hassle</li>
+            <li>Frees up money for what matters to you</li>
+            <li>A practical choice for your situation</li>
+          </ul>
 
-        <div class="take-action">
-          <button type="button" id="go-button">Go with Give Up<br />(RM315) <span>→</span></button>
-          <p>Less overthinking.<br />More of what you love.</p>
+          <div class="take-action">
+            <button type="button" id="go-button">Go with Give Up (RM315) <span>→</span></button>
+            <p>Less overthinking. More of what you love.</p>
+          </div>
         </div>
       </section>
 
