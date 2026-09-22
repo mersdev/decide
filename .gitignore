@@ -1,3 +1,4 @@
 .env
 runtime-config.js
 .DS_Store
+.codegraph/
