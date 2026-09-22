@@ -138,7 +138,6 @@ document.querySelectorAll('.persona').forEach((button) => button.addEventListene
   decide();
 }));
 
-optionButtons.forEach((button) => button.addEventListener('click', () => show(button.dataset.option)));
 action.addEventListener('click', decide);
 
 show('give_up');
