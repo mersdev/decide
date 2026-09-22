@@ -1,0 +1,50 @@
+name: Deploy decision board
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # GitHub Pages has no server runtime. This makes the browser key available
+      # to the static app, so use a restricted OpenRouter key for this deployment.
+      - name: Create browser runtime config
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          if [ -z "$OPENROUTER_API_KEY" ]; then
+            echo "OPENROUTER_API_KEY is not configured in repository secrets"
+            exit 1
+          fi
+          encoded=$(printf '%s' "$OPENROUTER_API_KEY" | base64 -w 0)
+          printf "window.OPENROUTER_API_KEY = atob('%s');\n" "$encoded" > runtime-config.js
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
